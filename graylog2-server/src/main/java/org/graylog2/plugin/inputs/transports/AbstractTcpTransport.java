@@ -308,7 +308,8 @@ public abstract class AbstractTcpTransport extends NettyTransport {
                                 .map(certificate -> (X509Certificate) certificate)
                                 .toArray(X509Certificate[]::new);
                     } else {
-                        LOG.warn("Client auth configured, but no authorized certificates / certificate authorities configured");
+                        LOG.warn("[Input @{}:{}]: Client auth configured, but no authorized certificates / certificate authorities configured",
+                                configuration.getString(CK_BIND_ADDRESS), configuration.getInt(CK_PORT));
                         clientAuthCerts = null;
                     }
                 } else {
